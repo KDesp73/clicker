@@ -1,8 +1,9 @@
 #include "raylib.bi"
 #include "coins.bi"
+#include "ui.bi"
 
 const SCREEN_FACTOR = 80
-const SCREEN_WIDTH = (16*SCREEN_FACTOR)
+const SCREEN_WIDTH as integer = (16*SCREEN_FACTOR)
 const SCREEN_HEIGHT = (9*SCREEN_FACTOR)
 
 #define GRAVITY 0.5
@@ -16,7 +17,6 @@ dim clicker as Clicker
 clicker.coins.init()
 clicker.balance = 0
 
-print "Capacity: " & clicker.coins.capacity
 
 InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Test")
 SetTargetFPS(60)
@@ -33,7 +33,12 @@ while (WindowShouldClose() = 0)
 
     BeginDrawing()
         ClearBackground(type(&H18, &H18, &H18))
-        DrawText(FormatText("Coins: %d", clicker.balance), 20, 20, 20, WHITE)
+
+        dim fontSize as integer = 200
+        dim text as const zstring ptr = FormatText("%d", clicker.balance)
+        DrawCenter(text, fontSize)
+        
+
         clicker.coins.draw()
     EndDrawing()
 wend
