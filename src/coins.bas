@@ -21,12 +21,13 @@ sub Coins.spawn(position as Vector2)
         exit sub
     end if
 
+    dim as integer direction = int(rnd() * 2) * 2 - 1
     this.count = this.count+1
     for i as integer = 0 to this.count- 1
         if (not items(i).active) then
             items(i).position.x = position.x
             items(i).position.y = position.y
-            items(i).velocity.x = rnd() * (-1 ^ int(rnd() * 2)) * 10
+            items(i).velocity.x = direction * (rnd() * 10)
             items(i).velocity.y = -10  ' initial upward velocity
             items(i).lifetime = 0
             items(i).active = 1

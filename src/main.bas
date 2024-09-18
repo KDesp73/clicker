@@ -23,7 +23,8 @@ SetTargetFPS(60)
 while (WindowShouldClose() = 0)
     dim mousePosition as Vector2 = GetMousePosition()
 
-    if IsMouseButtonPressed(MOUSE_LEFT_BUTTON) = 1 then
+    ' TODO: remove ` or IsKeyDown(KEY_SPACE)`. Used for testing
+    if IsMouseButtonPressed(MOUSE_LEFT_BUTTON) = 1 or IsKeyDown(KEY_SPACE) then
         clicker.balance = clicker.balance+1
         clicker.coins.spawn(mousePosition)
     end if
