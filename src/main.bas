@@ -16,6 +16,8 @@ dim clicker as Clicker
 clicker.coins.init()
 clicker.balance = 0
 
+print "Capacity: " & clicker.coins.capacity
+
 InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Test")
 SetTargetFPS(60)
 while (WindowShouldClose() = 0)

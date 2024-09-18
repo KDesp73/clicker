@@ -2,6 +2,7 @@
 
 constructor Coins()
     this.count = 0
+    this.capacity = 100
 end constructor
 
 destructor Coins()
@@ -15,11 +16,17 @@ sub Coins.init()
 end sub
 
 sub Coins.spawn(position as Vector2)
-    for i as integer = 0 to this.capacity - 1
+    if this.count >= this.capacity then
+        this.count = 0
+        exit sub
+    end if
+
+    this.count = this.count+1
+    for i as integer = 0 to this.count- 1
         if (not items(i).active) then
             items(i).position.x = position.x
             items(i).position.y = position.y
-            items(i).velocity.x = 0
+            items(i).velocity.x = rnd() * (-1 ^ int(rnd() * 2)) * 10
             items(i).velocity.y = -10  ' initial upward velocity
             items(i).lifetime = 0
             items(i).active = 1
